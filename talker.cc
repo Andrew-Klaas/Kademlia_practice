@@ -23,11 +23,13 @@ int main(int argc, char *argv[])
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
 	int numbytes;
-
+	
+	/*
 	if (argc != 4) {
 		fprintf(stderr,"usage: talker hostname message\n");
 		exit(1);
 	}
+	*/
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
