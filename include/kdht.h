@@ -20,12 +20,14 @@
 #define NUM_THREADS 1
 
 class kdht {
-public;
+public:
   void  start(std::string ip, std::string port);
-  int   listen(void);
+  int   listen(std::string port);
   void* get_in_addr(struct sockaddr *sa);
+	void  bootstrap(std::string bootstrap_ip, std::string bootstrap_port);
+  void  run();
+	int  sendPing(std::string ip, std::string port);
 
-private:
   std::queue<std::function<void()>> ops_q {};
   std::queue<std::function<void()>> rcv_q {};
   std::thread dht_listen_thread {};
