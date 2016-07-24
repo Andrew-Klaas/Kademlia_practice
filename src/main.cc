@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
   node1.start("127.0.0.1", "4222");
   node2.start("127.0.0.1", "4223");
 
-	sleep(5);
+	sleep(1);
 
   node2.bootstrap("127.0.0.1","4222"); //use node1 as "bootstrap" node
 

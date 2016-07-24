@@ -10,15 +10,21 @@ void kdht::start(std::string ip, std::string port) {
   dht_listen_thread =  std::thread(&kdht::listen, this, port);
 
 
-  //dht_worker_thread = std::thread(run);
+  dht_worker_thread = std::thread(&kdht::run, this);
 
 
 }
 
 //worker threads watching queues
 void kdht::run(){
-  
-
+	  bool running = true;
+    while (running) {
+      std::lock_guard<std::mutex> lck(storage_mtx);
+      auto ops = std::move(ops_q);
+      if (!ops.empty()) {
+        ops.front()();
+      }
+    } 
 }
 
 void kdht::bootstrap(std::string bootstrap_ip, std::string bootstrap_port) {
@@ -61,11 +67,23 @@ int kdht::sendPing(std::string ip, std::string port) {
 
 	msgpack::sbuffer buffer;
 	msgpack::packer<msgpack::sbuffer> pk(&buffer);
-	pk.pack_map(2);
+	pk.pack_map(3);
+	// function
+	pk.pack(std::string("F"));
+	pk.pack(0);
+	// key
 	pk.pack(std::string("K"));
 	pk.pack(2);
+	// value
 	pk.pack(std::string("V"));
 	pk.pack(3);
+
+/*
+  msgpack::type::tuple<int, bool, std::string> src(0, true, "example");
+	msgpack::sbuffer buffer;
+	msgpack::pack(buffer, src);
+*/
+	
 
 	if ((numbytes = sendto(sockfd, (char*)buffer.data(), buffer.size(), 0,
 			 p->ai_addr, p->ai_addrlen)) == -1) {
@@ -153,16 +171,30 @@ int kdht::listen(std::string port)
     inet_ntop(their_addr.ss_family,
         get_in_addr((struct sockaddr *)&their_addr),
         s, sizeof s));
-    
-    msgpack::object_handle oh = msgpack::unpack(buf.data(),100);
-    msgpack::object obj = oh.get();
-    
-    std::cout << obj << std::endl;
+   
+    //msgpack::object_handle oh = msgpack::unpack(buf.data(),100);
+    //msgpack::object obj = oh.get();
+		msgpack::unpacked msg;
+		msgpack::unpack(&msg, buf.data(),buf.size());
+		msgpack::object obj = msg.get
+		//msgpack::type::tuple<int, bool, std::string> dst;
+
+		std::cout << obj << std::endl;
+
+		{ 
+    	std::lock_guard<std::mutex> lck(storage_mtx);
+    	ops_q.emplace([=]() {
+      	//helloWorld(obj);
+    	});
+  	}
+
   }
-
 	close(sockfd);
-
 	return 0;
+}
+
+void kdht::helloWorld(std::string s){ 
+	std::cout << "result " << s << std::endl;
 }
 
 
