@@ -33,6 +33,9 @@ public:
   std::thread dht_listen_thread {};
   std::thread dht_worker_thread {};
 
+  void kdht::handle_function(vector<std::string> argvec);
+
+
 };
 
 

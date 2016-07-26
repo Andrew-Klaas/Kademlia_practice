@@ -59,6 +59,7 @@ int kdht::sendPing(std::string ip, std::string port) {
 		return 2;
 	}
 
+   /*
 	msgpack::sbuffer buffer;
 	msgpack::packer<msgpack::sbuffer> pk(&buffer);
 	pk.pack_map(2);
@@ -66,6 +67,15 @@ int kdht::sendPing(std::string ip, std::string port) {
 	pk.pack(2);
 	pk.pack(std::string("V"));
 	pk.pack(3);
+  */
+  std::vector<std::string> vec;
+  vec.push_back("0");
+  vec.push_back("K");
+  vec.push_back("cat");
+  vec.push_back("V");
+  vec.push_back("7");
+  msgpack::sbuffer sbuf;
+  msgpack::pack(sbuf, vec);
 
 	if ((numbytes = sendto(sockfd, (char*)buffer.data(), buffer.size(), 0,
 			 p->ai_addr, p->ai_addrlen)) == -1) {
@@ -156,13 +166,25 @@ int kdht::listen(std::string port)
     
     msgpack::object_handle oh = msgpack::unpack(buf.data(),100);
     msgpack::object obj = oh.get();
-    
     std::cout << obj << std::endl;
-  }
+    std::vector<std::string> rvec;
+    obj.convert(rvec);
+    //handle_function(rvec);
 
+  }
 	close(sockfd);
 
 	return 0;
+}
+
+void kdht::handle_function(vector<std::string> argvec) {
+  std::lock_guard<std::mutex> lck(i
+  switch(argec[0]) {
+    case 0: rcv_q.emplace([=](){
+              KVdisplay(argvec);
+            });
+    default: std::cout << "default\n";
+             break;
 }
 
 
