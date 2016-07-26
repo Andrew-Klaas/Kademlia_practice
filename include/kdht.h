@@ -16,6 +16,7 @@
 #include <queue>
 #include <functional>
 #include <thread>
+#include <mutex>
 
 #define NUM_THREADS 1
 
@@ -32,6 +33,8 @@ public:
   std::queue<std::function<void()>> rcv_q {};
   std::thread dht_listen_thread {};
   std::thread dht_worker_thread {};
+	std::mutex storage_mtx {};
+	void helloWorld(std::string s);
 
   void kdht::handle_function(vector<std::string> argvec);
 
