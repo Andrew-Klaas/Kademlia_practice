@@ -36,8 +36,8 @@ public:
 	std::mutex storage_mtx {};
 	void helloWorld(std::string s);
 
-  void kdht::handle_function(vector<std::string> argvec);
-
+  void handle_function(std::vector<std::string> argvec);
+  void KVdisplay(std::vector<std::string> argvec);
 
 };
 

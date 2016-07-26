@@ -20,8 +20,9 @@ void kdht::run(){
 	  bool running = true;
     while (running) {
       std::lock_guard<std::mutex> lck(storage_mtx);
-      auto ops = std::move(ops_q);
+      auto ops = std::move(rcv_q);
       if (!ops.empty()) {
+        printf("runner executing op\n");
         ops.front()();
       }
     } 
@@ -85,8 +86,8 @@ int kdht::sendPing(std::string ip, std::string port) {
   vec.push_back("cat");
   vec.push_back("V");
   vec.push_back("7");
-  msgpack::sbuffer sbuf;
-  msgpack::pack(sbuf, vec);
+  msgpack::sbuffer buffer;
+  msgpack::pack(buffer, vec);
 
 /*
   msgpack::type::tuple<int, bool, std::string> src(0, true, "example");
@@ -187,21 +188,26 @@ int kdht::listen(std::string port)
     std::cout << obj << std::endl;
     std::vector<std::string> rvec;
     obj.convert(rvec);
-    //handle_function(rvec);
+    handle_function(rvec);
   }
 	close(sockfd);
 	return 0;
 }
 
-void kdht::handle_function(vector<std::string> argvec) {
+void kdht::handle_function(std::vector<std::string> argvec) {
   std::lock_guard<std::mutex> lck(storage_mtx);
-
-  switch(argec[0]) {
+  switch(stoi(argvec[0])) {
     case 0: rcv_q.emplace([=](){
               KVdisplay(argvec);
             });
     default: std::cout << "default\n";
 
  }
+}
+
+void kdht::KVdisplay(std::vector<std::string> argvec){
+  for ( auto& arg : argvec ) {
+    std::cout << "arg: " << arg << std::endl;
+  }
 }
 
