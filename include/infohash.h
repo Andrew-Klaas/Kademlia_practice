@@ -3,16 +3,17 @@
 
 #include <array>
 #include <cstdint>
+#include <cstring>
 
 #define ID_BYTE_LENGTH 20
 
 class Infohash {
 public:
-  std::array<uint8_t, ID_BYTE_LENGTH> ID;
+  std::array<char, ID_BYTE_LENGTH> ID;
   
   bool operator<(const Infohash &other) const {
     for (auto i = 0; i < ID_BYTE_LENGTH; i++ ) {
-      if(ID[i] > other.ID[i]) {
+      if(this->ID[i] > other.ID[i]) {
         return false;
       }
     }
@@ -20,7 +21,7 @@ public:
   }
 
   bool operator==(const Infohash &other) const {
-    return memcmp(ID, other.ID, ID_BYTE_LENGTH) == 0;
+    return std::memcmp(this->ID.data(), other.ID.data(), ID_BYTE_LENGTH) == 0;
   }
 
 private:

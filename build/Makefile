@@ -123,6 +123,114 @@ testKademlia/fast:
 	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/build
 .PHONY : testKademlia/fast
 
+src/RoutingTable.o: src/RoutingTable.cc.o
+
+.PHONY : src/RoutingTable.o
+
+# target to build an object file
+src/RoutingTable.cc.o:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/RoutingTable.cc.o
+.PHONY : src/RoutingTable.cc.o
+
+src/RoutingTable.i: src/RoutingTable.cc.i
+
+.PHONY : src/RoutingTable.i
+
+# target to preprocess a source file
+src/RoutingTable.cc.i:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/RoutingTable.cc.i
+.PHONY : src/RoutingTable.cc.i
+
+src/RoutingTable.s: src/RoutingTable.cc.s
+
+.PHONY : src/RoutingTable.s
+
+# target to generate assembly for a file
+src/RoutingTable.cc.s:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/RoutingTable.cc.s
+.PHONY : src/RoutingTable.cc.s
+
+src/contact.o: src/contact.cc.o
+
+.PHONY : src/contact.o
+
+# target to build an object file
+src/contact.cc.o:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/contact.cc.o
+.PHONY : src/contact.cc.o
+
+src/contact.i: src/contact.cc.i
+
+.PHONY : src/contact.i
+
+# target to preprocess a source file
+src/contact.cc.i:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/contact.cc.i
+.PHONY : src/contact.cc.i
+
+src/contact.s: src/contact.cc.s
+
+.PHONY : src/contact.s
+
+# target to generate assembly for a file
+src/contact.cc.s:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/contact.cc.s
+.PHONY : src/contact.cc.s
+
+src/db.o: src/db.cc.o
+
+.PHONY : src/db.o
+
+# target to build an object file
+src/db.cc.o:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/db.cc.o
+.PHONY : src/db.cc.o
+
+src/db.i: src/db.cc.i
+
+.PHONY : src/db.i
+
+# target to preprocess a source file
+src/db.cc.i:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/db.cc.i
+.PHONY : src/db.cc.i
+
+src/db.s: src/db.cc.s
+
+.PHONY : src/db.s
+
+# target to generate assembly for a file
+src/db.cc.s:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/db.cc.s
+.PHONY : src/db.cc.s
+
+src/infohash.o: src/infohash.cc.o
+
+.PHONY : src/infohash.o
+
+# target to build an object file
+src/infohash.cc.o:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/infohash.cc.o
+.PHONY : src/infohash.cc.o
+
+src/infohash.i: src/infohash.cc.i
+
+.PHONY : src/infohash.i
+
+# target to preprocess a source file
+src/infohash.cc.i:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/infohash.cc.i
+.PHONY : src/infohash.cc.i
+
+src/infohash.s: src/infohash.cc.s
+
+.PHONY : src/infohash.s
+
+# target to generate assembly for a file
+src/infohash.cc.s:
+	$(MAKE) -f CMakeFiles/testKademlia.dir/build.make CMakeFiles/testKademlia.dir/src/infohash.cc.s
+.PHONY : src/infohash.cc.s
+
 src/kdht.o: src/kdht.cc.o
 
 .PHONY : src/kdht.o
@@ -213,6 +321,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... testKademlia"
+	@echo "... src/RoutingTable.o"
+	@echo "... src/RoutingTable.i"
+	@echo "... src/RoutingTable.s"
+	@echo "... src/contact.o"
+	@echo "... src/contact.i"
+	@echo "... src/contact.s"
+	@echo "... src/db.o"
+	@echo "... src/db.i"
+	@echo "... src/db.s"
+	@echo "... src/infohash.o"
+	@echo "... src/infohash.i"
+	@echo "... src/infohash.s"
 	@echo "... src/kdht.o"
 	@echo "... src/kdht.i"
 	@echo "... src/kdht.s"

@@ -1,14 +1,19 @@
 #ifndef CONTACT_H_
 #define CONTACT_H_
 
+#include <iostream>
+#include <stdint.h>
+#include "Infohash.h"
+
+
 class Contact {
   // bigendian NODEID
   // IP address
   // UDP port address 
 public:
-  InfoHash    NodeID;
-  std::string IPaddress
-  uint_8      port
+  Infohash    NodeID;
+  std::string IPaddress;
+  uint8_t      port;
 
 };
 
