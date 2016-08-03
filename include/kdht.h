@@ -18,6 +18,8 @@
 #include <thread>
 #include <mutex>
 
+#include "RoutingTable.h"
+
 #define NUM_THREADS 1
 
 class kdht {
@@ -27,15 +29,18 @@ public:
   void* get_in_addr(struct sockaddr *sa);
 	void  bootstrap(std::string bootstrap_ip, std::string bootstrap_port);
   void  run();
+	
 	int  sendPing(std::string ip, std::string port);
-
-  std::queue<std::function<void()>> ops_q {};
+	
+	Infohash nodeInfoHash;
+	RoutingTable Buckets;
+	std::queue<std::function<void()>> ops_q {};
   std::queue<std::function<void()>> rcv_q {};
   std::thread dht_listen_thread {};
   std::thread dht_worker_thread {};
 	std::mutex storage_mtx {};
+	
 	void helloWorld(std::string s);
-
   void handle_function(std::vector<std::string> argvec);
   void KVdisplay(std::vector<std::string> argvec);
 

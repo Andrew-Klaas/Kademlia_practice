@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <stdint.h>
-#include "Infohash.h"
+#include "infohash.h"
 
 
 class Contact {

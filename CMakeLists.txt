@@ -7,7 +7,7 @@ project(Kademlia)
  
 #Bring the headers, such as Student.h into the project
 include_directories(include)
-include_directories(/usr/local/include)
+
  
 #Can manually add the sources using the set command as follows:
 #set(SOURCES src/mainapp.cpp src/Student.cpp)
@@ -19,4 +19,6 @@ add_executable(testKademlia ${SOURCES})
  
 TARGET_LINK_LIBRARIES( testKademlia 
 pthread
+ssl
+crypto
 )

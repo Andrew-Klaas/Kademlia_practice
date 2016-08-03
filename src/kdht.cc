@@ -2,15 +2,20 @@
 
 void kdht::start(std::string ip, std::string port) {
   unsigned int nthreads = std::thread::hardware_concurrency();
+	
+	nodeInfoHash.setRandom();
+
+  	
+	
 
 	// start listener thread
   //dht_listen_thread = std::thread(listen(port));
   //dht_listen_thread = std::thread([&] { this->listen(port); });
 	//auto t = std::thread([&] { this->listen(port); });
-  dht_listen_thread =  std::thread(&kdht::listen, this, port);
+  //dht_listen_thread =  std::thread(&kdht::listen, this, port);
 
 
-  dht_worker_thread = std::thread(&kdht::run, this);
+  //dht_worker_thread = std::thread(&kdht::run, this);
 
 
 }
